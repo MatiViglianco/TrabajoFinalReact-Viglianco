@@ -1,0 +1,25 @@
+.box {
+  width: 95vw;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem;
+  margin-top: 2%;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.8rem;
+  overflow: auto;
+}
+
+.box::-webkit-scrollbar {
+  background-color: #ededed;
+}
+.box::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 10rem;
+}
+
+.item {
+  width: 80%;
+  height: 30rem;
+}

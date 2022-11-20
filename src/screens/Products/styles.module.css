@@ -1,0 +1,39 @@
+.card {
+  width: 27rem;
+  height: 20rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.img {
+  position: relative;
+  width: 27rem;
+  height: 20rem;
+}
+
+.content {
+  width: 27rem;
+  height: 20rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: relative;
+  z-index: 10 !important;
+  top: -6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s;
+}
+.content:hover {
+  transition: 0.3s;
+  top: -20rem;
+}
+
+.title {
+  width: 27rem;
+  height: 7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
