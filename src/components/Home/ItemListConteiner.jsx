@@ -1,30 +1,47 @@
-import React from "react";
 import Box from "@mui/material/Box";
-import CardProduct from "../../screens/Products/CardProduct";
-import axios from "axios";
+import { Button } from "@mui/material";
+import CardProduct from "../../screens/Home/CardItem/CardProduct";
 import styles from "./styles.module.css";
+import GetProduct from "../../API/coffeeApi";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 const ItemListConteiner = () => {
-  const [data, setData] = React.useState([]);
-  React.useEffect(() => {
-    const url = "https://api.sampleapis.com/coffee/hot";
-    axios.get(url).then((res) => {
-      setData(res.data);
-    });
-  }, []);
+  const items = GetProduct();
+  const { cat } = useParams();
+  // useEffect(() => {
+  //   console.log(items, cat);
+  // }, [cat, items]);
+
   return (
     <Box className={styles.box}>
-      {data.slice(0, 16)?.map((product) => {
-        const item = {
-          id: product.id,
-          title: product.title,
-          description: product.description,
-          price: "$20",
-          pictureUrl: product.image,
-          stock: 5,
-        };
-        return <CardProduct product={item} />;
-      })}
+      <div className={styles.div}>
+        <Button className={styles.button} variant="contained">
+          <Link to={`/category/small`}>Small</Link>
+        </Button>
+
+        <Button className={styles.button} variant="contained">
+          <Link to={`/category/medium`}>Medium</Link>
+        </Button>
+
+        <Button className={styles.button} variant="contained">
+          <Link to={`/category/big`}>Big</Link>
+        </Button>
+
+        <Button className={styles.button} variant="contained">
+          <Link to={`/category/all`}>All</Link>
+        </Button>
+      </div>
+      {cat === undefined || cat === "all"
+        ? items.map((product) => {
+            return <CardProduct product={product} />;
+          })
+        : items
+            .filter((i) => i.category === cat)
+            .map((product) => {
+              return <CardProduct product={product} />;
+            })}
     </Box>
   );
 };

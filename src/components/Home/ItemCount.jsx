@@ -31,9 +31,9 @@ function ItemCount() {
       <Button variant="contained" onClick={() => clickDeleteCount()}>
         {"Add to cart"}
       </Button>
-      <Button variant="contained" onClick={() => clickDeleteCount()}>
+      {/* <Button variant="contained" onClick={() => clickDeleteCount()}>
         <DeleteIcon />
-      </Button>
+      </Button> */}
     </div>
   );
 }

@@ -23,3 +23,14 @@
   width: 80%;
   height: 30rem;
 }
+
+.div {
+  top: 5rem;
+  position: absolute;
+  gap: 0.8rem;
+  vertical-align: top;
+}
+
+.buttom {
+  background-color: #272727;
+}

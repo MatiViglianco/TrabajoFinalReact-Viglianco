@@ -8,14 +8,24 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import Tooltip from "@mui/material/Tooltip";
 import cart from "../IMG/cart.png";
 import CoffeeLogo from "../IMG/FinishCoffe.png";
 import CoffeeMini from "../IMG/CoffeeMini.png";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import Badge from "@mui/material/Badge";
+import { styled } from "@mui/material/styles";
 
-const pages = ["Products", "Pricing", "About us"];
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -5,
+    top: 3,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -41,23 +51,24 @@ const ResponsiveAppBar = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-              }}
-            >
-              <img
-                src={CoffeeLogo}
-                alt="logo"
-                style={{
-                  height: "80px",
+            <Link to="/">
+              <Typography
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  display: { xs: "none", md: "flex" },
                 }}
-              />
-            </Typography>
+              >
+                <img
+                  src={CoffeeLogo}
+                  alt="logo"
+                  style={{
+                    height: "80px",
+                  }}
+                />
+              </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -87,46 +98,64 @@ const ResponsiveAppBar = () => {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-            <Typography
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-              }}
-            >
-              <img
-                src={CoffeeMini}
-                alt="logo"
-                style={{
-                  width: "200px",
-                }}
-              />
-            </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-              {pages.map((page) => (
+                <Link to="/AboutUs">
+                  <Button
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    <Typography textAlign="center">About Us</Typography>
+                  </Button>
+                </Link>
                 <Button
-                  key={page}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  <Typography textAlign="center">Category</Typography>
                 </Button>
-              ))}
+              </Menu>
+            </Box>
+            <Link to="/">
+              <Typography
+                noWrap
+                component="a"
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", md: "none" },
+                }}
+              >
+                <img
+                  src={CoffeeMini}
+                  alt="logo"
+                  style={{
+                    width: "200px",
+                  }}
+                />
+              </Typography>
+            </Link>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              <Link to="/AboutUs">
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "white", display: "block" }}
+                >
+                  <Typography textAlign="center">About Us</Typography>
+                </Button>
+              </Link>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                <Typography textAlign="center">Category</Typography>
+              </Button>
             </Box>
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open cart">
                 <IconButton>
-                  <img src={cart} alt="cart" style={{ width: "30px" }} />
+                  <StyledBadge badgeContent={1} color="primary">
+                    <Link to="/Checkout">
+                      <img src={cart} alt="cart" style={{ width: "30px" }} />
+                    </Link>
+                  </StyledBadge>
                 </IconButton>
               </Tooltip>
             </Box>
